@@ -2,14 +2,30 @@ const digitsButtons = document.querySelectorAll(".digits");
 const operatorButtons = document.querySelectorAll(".operators");
 const operationsInput = document.querySelector(".operations-input");
 const result = document.querySelector(".result");
+const equals = document.querySelector(".equals");
 let firstNumber = "";
 let secondNumber = "";
 let total = 0;
 let mathOperator = "";
 let isFirstOperation = true;
+let isClickedEquals = false;
+
+function displayFinalResult() {
+  if (secondNumber == "") return;
+  isClickedEquals = true;
+  operationsInput.textContent = `${total} ${mathOperator} ${secondNumber} =`;
+  operate();
+  result.textContent = total;
+}
 
 function displayResult() {
   if (isFirstOperation) return (result.textContent = firstNumber);
+
+  if (isClickedEquals) return (isClickedEquals = false);
+
+  if (this.value == "=") {
+    return displayFinalResult();
+  }
 
   operationsInput.textContent = `${total} ${mathOperator}`;
   result.textContent = secondNumber;
@@ -49,3 +65,4 @@ function operate() {
 
 digitsButtons.forEach((digitBtn) => digitBtn.addEventListener("click", enterNumbers));
 operatorButtons.forEach((operatorBtn) => operatorBtn.addEventListener("click", operate));
+equals.addEventListener("click", displayResult);
