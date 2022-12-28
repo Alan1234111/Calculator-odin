@@ -1,0 +1,126 @@
+:root {
+  --primary-color: #fcb31b;
+  --primary-caluclator-color: #212121;
+  --padding-caluclator-color: #3b3b3b;
+  --buttons-color: #616161;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+body {
+  background-color: var(--primary-color);
+}
+
+.calculator__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.calculator {
+  display: grid;
+  grid-template-rows: 0.8fr 3.2fr;
+  width: 300px;
+  height: 550px;
+  border-radius: 10px;
+  border: 1px solid black;
+  background-color: var(--primary-caluclator-color);
+}
+
+.display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.operations-display {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-top: 20px;
+  width: 90%;
+  min-height: 70%;
+  border-radius: 5px;
+  background-color: var(--padding-caluclator-color);
+}
+
+.operations-display output {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-height: 50%;
+  margin-right: 5px;
+  font-size: 1.3rem;
+}
+
+.operations-input {
+  color: #54a07f;
+  text-align: right;
+}
+
+#result {
+  color: white;
+  margin-top: 5px;
+  font-size: 1.8rem;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 15px 15px;
+  max-height: 100%;
+}
+
+.buttons button {
+  height: 55px;
+  width: 55px;
+  border: none;
+  border-radius: 100%;
+  background-color: var(--buttons-color);
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px,
+    rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px,
+    rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  font-size: 1.2rem;
+  color: white;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+}
+
+.buttons .digits:hover {
+  background-color: #afaaaa;
+  scale: 1.1;
+}
+
+.buttons .operators:hover {
+  background-color: #44c2bd;
+  scale: 1.1;
+}
+
+.buttons button:hover {
+  background-color: #afaaaa;
+  scale: 1.1;
+}
+
+#allclear:hover,
+#clear:hover {
+  background-color: #de7575;
+  scale: 1.1;
+}
+
+#equals {
+  width: 100%;
+  border-radius: 10px;
+  grid-column: 3/5;
+}
+
+#equals:hover {
+  background-color: #32cd32;
+  scale: 1.1;
+}
