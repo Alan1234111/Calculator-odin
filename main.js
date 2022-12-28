@@ -1,4 +1,5 @@
 const digitsButtons = document.querySelectorAll(".digits");
+const decimal = document.querySelector(".decimal");
 const operatorButtons = document.querySelectorAll(".operators");
 const operationsInput = document.querySelector(".operations-input");
 const result = document.querySelector(".result");
@@ -11,11 +12,9 @@ let secondNumber = "";
 let total = 0;
 let mathOperator = "";
 let isFirstOperation = true;
-let isClickedEquals = false;
 
 function displayFinalResult() {
   if (secondNumber == "") return;
-  isClickedEquals = true;
   operationsInput.textContent = `${total} ${mathOperator} ${secondNumber} =`;
   operate();
   result.textContent = total;
@@ -24,7 +23,7 @@ function displayFinalResult() {
 function displayResult() {
   if (isFirstOperation) return (result.textContent = firstNumber);
 
-  if (isClickedEquals) return (isClickedEquals = false);
+  if (!mathOperator) return;
 
   if (this.value == "=") {
     return displayFinalResult();
@@ -35,7 +34,13 @@ function displayResult() {
 }
 
 function enterNumbers() {
-  isFirstOperation ? (firstNumber += this.value) : (secondNumber += this.value);
+  if (isFirstOperation) {
+    if (firstNumber == "" && this.value == "0") return;
+    firstNumber += this.value;
+  } else {
+    if (secondNumber == "" && this.value == "0") return;
+    secondNumber += this.value;
+  }
   displayResult();
 }
 
@@ -85,11 +90,13 @@ function operate() {
   if (mathOperator == "%") total = parseTotal % parseSecond;
 
   secondNumber = "";
+
   mathOperator = this.value;
   displayResult();
 }
 
 digitsButtons.forEach((digitBtn) => digitBtn.addEventListener("click", enterNumbers));
+// decimal.addEventListener("click", enterNumbers);
 operatorButtons.forEach((operatorBtn) => operatorBtn.addEventListener("click", operate));
 equals.addEventListener("click", displayResult);
 clear.addEventListener("click", removeLastDigit);
