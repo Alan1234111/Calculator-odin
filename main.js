@@ -11,11 +11,9 @@ let secondNumber = "";
 let total = 0;
 let mathOperator = "";
 let isFirstOperation = true;
-let isClickedEquals = false;
 
 function displayFinalResult() {
   if (secondNumber == "") return;
-  isClickedEquals = true;
   operationsInput.textContent = `${total} ${mathOperator} ${secondNumber} =`;
   operate();
   result.textContent = total;
@@ -24,11 +22,11 @@ function displayFinalResult() {
 function displayResult() {
   if (isFirstOperation) return (result.textContent = firstNumber);
 
-  if (isClickedEquals) return (isClickedEquals = false);
-
   if (this.value == "=") {
     return displayFinalResult();
   }
+
+  if (!mathOperator) return;
 
   operationsInput.textContent = `${total} ${mathOperator}`;
   result.textContent = secondNumber;
@@ -85,6 +83,7 @@ function operate() {
   if (mathOperator == "%") total = parseTotal % parseSecond;
 
   secondNumber = "";
+
   mathOperator = this.value;
   displayResult();
 }
