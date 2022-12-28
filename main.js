@@ -23,11 +23,12 @@ function displayFinalResult() {
 function displayResult() {
   if (isFirstOperation) return (result.textContent = firstNumber);
 
-  if (!mathOperator) return;
-
+  if (isClickedEquals) return (isClickedEquals = false);
   if (this.value == "=") {
     return displayFinalResult();
   }
+
+  if (!mathOperator) return;
 
   operationsInput.textContent = `${total} ${mathOperator}`;
   result.textContent = secondNumber;
