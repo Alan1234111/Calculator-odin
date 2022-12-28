@@ -1,10 +1,12 @@
-let digitsButtons = document.querySelectorAll(".digits");
-let operatorButtons = document.querySelectorAll(".operators");
+const digitsButtons = document.querySelectorAll(".digits");
+const operatorButtons = document.querySelectorAll(".operators");
 let firstNumber = "";
 let secondNumber = "";
 let total = 0;
 let mathOperator = "";
 let isFirstOperation = true;
+
+function displayResult() {}
 
 function enterNumbers() {
   isFirstOperation ? (firstNumber += this.value) : (secondNumber += this.value);
