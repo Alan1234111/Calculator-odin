@@ -4,6 +4,7 @@ const operationsInput = document.querySelector(".operations-input");
 const result = document.querySelector(".result");
 const equals = document.querySelector(".equals");
 const clear = document.querySelector(".clear");
+const allClear = document.querySelector(".allclear");
 
 let firstNumber = "";
 let secondNumber = "";
@@ -49,6 +50,18 @@ function removeLastDigit() {
   result.textContent = secondNumber;
 }
 
+function reset() {
+  // &nbsp make operationInput visible to site
+  operationsInput.innerHTML = "&nbsp";
+  result.textContent = "";
+  firstNumber = "";
+  secondNumber = "";
+  total = 0;
+  mathOperator = "";
+  isFirstOperation = true;
+  isClickedEquals = false;
+}
+
 function operate() {
   if (isFirstOperation) {
     total = firstNumber;
@@ -80,3 +93,4 @@ digitsButtons.forEach((digitBtn) => digitBtn.addEventListener("click", enterNumb
 operatorButtons.forEach((operatorBtn) => operatorBtn.addEventListener("click", operate));
 equals.addEventListener("click", displayResult);
 clear.addEventListener("click", removeLastDigit);
+allClear.addEventListener("click", reset);
