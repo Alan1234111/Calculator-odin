@@ -35,12 +35,13 @@ function displayResult() {
 
 function enterNumbers() {
   if (isFirstOperation) {
-    if (firstNumber == "" && this.value == "0") return;
+    if ((firstNumber === "" && this.value === "0") || (firstNumber.includes(".") && this.value === ".")) return;
     firstNumber += this.value;
   } else {
-    if (secondNumber == "" && this.value == "0") return;
+    if (secondNumber.includes(".") && this.value == ".") return;
     secondNumber += this.value;
   }
+
   displayResult();
 }
 
@@ -68,6 +69,8 @@ function reset() {
 }
 
 function operate() {
+  if (!firstNumber) return;
+
   if (isFirstOperation) {
     total = firstNumber;
     mathOperator = this.value;
@@ -86,7 +89,7 @@ function operate() {
   if (mathOperator == "+") total = parseTotal + parseSecond;
   if (mathOperator == "-") total = parseTotal - parseSecond;
   if (mathOperator == "x") total = parseTotal * parseSecond;
-  if (mathOperator == "/") total = parseTotal / parseSecond;
+  if (mathOperator == "/" && secondNumber !== "0") total = parseTotal / parseSecond;
   if (mathOperator == "%") total = parseTotal % parseSecond;
 
   secondNumber = "";
@@ -96,7 +99,7 @@ function operate() {
 }
 
 digitsButtons.forEach((digitBtn) => digitBtn.addEventListener("click", enterNumbers));
-// decimal.addEventListener("click", enterNumbers);
+decimal.addEventListener("click", enterNumbers);
 operatorButtons.forEach((operatorBtn) => operatorBtn.addEventListener("click", operate));
 equals.addEventListener("click", displayResult);
 clear.addEventListener("click", removeLastDigit);
